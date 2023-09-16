@@ -12,7 +12,10 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "window": {
+        "setMinSize": true
+      }
     },
     "bundle": {
       "active": true,
@@ -55,11 +58,11 @@
     },
     "windows": [
       {
-        "fullscreen": false,
-        "height": 600,
-        "resizable": true,
         "title": "BioParallel",
-        "width": 800
+        "width": 1280,
+        "height": 720,
+        "resizable": true,
+        "fullscreen": false
       }
     ]
   }
