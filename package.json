@@ -1,6 +1,17 @@
 {
 	"name": "bioparallel",
 	"version": "0.0.1",
+	"description": "Application for forensic trace comparision",
+	"license" : "SEE LICENSE IN ../LICENSE.md", 
+	"author": {
+		"name": "Cyprian Zdebski",
+		"email": "cyprianz5mail@gmail.com",
+		"url": "https://github.com/shipurjan"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/shipurjan/BioParallel"
+	},
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -13,7 +24,9 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
+		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.25.0",
+		"@tauri-apps/cli": "^1.4.0",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
 		"eslint": "^8.49.0",
