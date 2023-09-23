@@ -32,7 +32,7 @@
         "../static/logo_512.png",
         "../static/logo.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.bioparallel.prod",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
