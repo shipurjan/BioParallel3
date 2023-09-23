@@ -1,5 +1,14 @@
+<script lang="ts">
+  import { invoke } from '@tauri-apps/api/tauri';
+  import { onMount } from 'svelte';
+
+  onMount(() => {
+    invoke('show_window');
+  });
+</script>
+
 <div
-  class="flex flex-col items-center align-center p-2 gap-2 w-[100dvw] h-[100dvh]"
+  class="align-center flex h-[100dvh] w-[100dvw] flex-col items-center gap-2 p-2"
 >
   <h1 class="text-3xl font-light">Welcome to SvelteKit</h1>
   <h1 class="text-3xl font-normal">Welcome to SvelteKit</h1>
