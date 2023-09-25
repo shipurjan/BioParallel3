@@ -9,6 +9,10 @@
       resizeTo: container,
     });
     container.appendChild(app.view);
+    return () => {
+      container.remove();
+      app.destroy(true);
+    };
   });
 </script>
 

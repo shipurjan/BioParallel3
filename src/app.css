@@ -62,6 +62,14 @@
   src: url('@assets/fonts/lato-v24-latin-ext-900italic.woff2') format('woff2');
 }
 
+html,
+body {
+  width: 100dvw;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: Lato, system-ui, Avenir, Helvetica, Arial, sans-serif;
   -webkit-user-select: none;

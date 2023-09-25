@@ -9,11 +9,8 @@
 </script>
 
 <div
-  class="align-center flex h-[100dvh] w-[100dvw] flex-col items-center gap-2 p-2"
+  class="align-center flex h-full w-full flex-row items-center justify-center gap-2 p-2 align-middle"
 >
-  <h1 class="text-3xl font-light">Welcome to SvelteKit</h1>
-  <h1 class="text-3xl font-normal">Welcome to SvelteKit</h1>
-  <h1 class="text-3xl font-bold">Welcome to SvelteKit</h1>
-  <h1 class="text-3xl font-black">Welcome to SvelteKit</h1>
+  <Canvas />
   <Canvas />
 </div>
