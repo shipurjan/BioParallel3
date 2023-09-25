@@ -12,4 +12,4 @@
   });
 </script>
 
-<div class="h-[500px] w-[500px]" bind:this="{container}"></div>
+<div class="h-[500px] w-[500px]" bind:this={container}></div>
