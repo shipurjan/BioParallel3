@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "1.4.0",
+    "pixi-viewport": "5.0.2",
     "pixi.js": "7.3.1"
   },
   "devDependencies": {
