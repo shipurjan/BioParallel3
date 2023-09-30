@@ -14,8 +14,9 @@
   },
   "private": true,
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
+    "prebuild": "cd .prebuild && pnpm i && pnpm start",
+    "dev": "pnpm prebuild && vite dev",
+    "build": "pnpm prebuild && vite build",
     "preview": "vite preview",
     "svelte:check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "svelte:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

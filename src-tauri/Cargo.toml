@@ -2,7 +2,7 @@
 name = "bioparallel"
 version = "0.0.1"
 description = "Application for forensic trace comparision"
-authors = ["Cyprian Zdebski"]
+authors = ["Cyprian Zdebski <cyprianz5mail@gmail.com>"]
 license-file = "../LICENSE.md"
 repository = "https://github.com/shipurjan/BioParallel"
 default-run = "bioparallel"
