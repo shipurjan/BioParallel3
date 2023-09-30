@@ -12,5 +12,4 @@
   class="align-center flex h-full w-full flex-row items-center justify-center gap-2 p-2 align-middle"
 >
   <Canvas />
-  <Canvas />
 </div>
