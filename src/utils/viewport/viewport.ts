@@ -1,5 +1,6 @@
 import { Viewport } from 'pixi-viewport';
 import * as PIXI from 'pixi.js';
+import { loadSprite } from './loadSprite';
 
 export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
   const viewport = new Viewport({
@@ -20,6 +21,25 @@ export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
     percent: 0,
     interrupt: true,
   });
+
+  loadSprite('C:/Users/niar-windows/Pictures/server-icon.png').then(
+    (sprite) => {
+      if (!sprite) return;
+
+      const scale =
+        sprite.width > viewport.worldWidth ||
+        sprite.height > viewport.worldHeight
+          ? viewport.findFit(sprite.width, sprite.height)
+          : 1;
+      const transform = new PIXI.Matrix(scale, 0, 0, scale, 0, 0);
+      sprite.transform.setFromMatrix(transform);
+      sprite.position.set(
+        (viewport.worldWidth - sprite.width) / 2,
+        (viewport.worldHeight - sprite.height) / 2
+      );
+      viewport.addChild(sprite);
+    }
+  );
 
   app.stage.addChild(viewport);
 

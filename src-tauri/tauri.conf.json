@@ -15,6 +15,17 @@
             "all": false,
             "window": {
                 "setMinSize": true
+            },
+            "fs": {
+                "scope": {
+                    "allow": [
+                        "**"
+                    ],
+                    "deny": [],
+                    "requireLiteralLeadingDot": false
+                },
+                "readFile": true,
+                "exists": true
             }
         },
         "bundle": {

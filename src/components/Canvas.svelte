@@ -20,4 +20,4 @@
   });
 </script>
 
-<div class=" h-[300px] w-[500px]" bind:this={container}></div>
+<div class=" h-[700px] w-[1260px]" bind:this={container}></div>
