@@ -75,7 +75,8 @@
                 "height": 720,
                 "resizable": true,
                 "fullscreen": false,
-                "visible": false
+                "visible": false,
+                "fileDropEnabled": false
             }
         ]
     }

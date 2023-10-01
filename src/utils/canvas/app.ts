@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 export const CanvasApplication = (container: HTMLElement) => {
+  PIXI.BaseTexture.defaultOptions.scaleMode = 0;
   const app = new PIXI.Application<HTMLCanvasElement>({
     background: '#1099bb',
     resizeTo: container,
