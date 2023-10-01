@@ -1,8 +1,20 @@
+<script lang="ts">
+  import Canvas from '@components/Canvas.svelte';
+  import { invoke } from '@tauri-apps/api/tauri';
+  import { onMount } from 'svelte';
+  import { listen } from '@tauri-apps/api/event';
+
+  onMount(() => {
+    invoke('show_window');
+    listen('tauri://file-drop-hover', (event) => {
+      console.log(event);
+    });
+  });
+</script>
+
 <div
-  class="flex flex-col items-center align-center p-2 gap-2 w-[100dvw] h-[100dvh]"
+  class="align-center flex h-full w-full flex-row items-center justify-center gap-2 bg-red-500 p-2 align-middle"
 >
-  <h1 class="text-3xl font-light">Welcome to SvelteKit</h1>
-  <h1 class="text-3xl font-normal">Welcome to SvelteKit</h1>
-  <h1 class="text-3xl font-bold">Welcome to SvelteKit</h1>
-  <h1 class="text-3xl font-black">Welcome to SvelteKit</h1>
+  <Canvas />
+  <Canvas />
 </div>
