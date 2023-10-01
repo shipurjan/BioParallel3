@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { spring } from 'svelte/motion';
+
   import type { Application } from 'pixi.js';
   import type { Viewport } from 'pixi-viewport';
   import { CanvasApplication } from '@utils/canvas/app';
@@ -14,6 +16,11 @@
   let container: HTMLDivElement;
   let app: Application<HTMLCanvasElement>;
   let viewport: Viewport;
+  const transformSpring = spring(0, { stiffness: 0.2, damping: 0.8 });
+  const toggleTransform = () => {
+    return transformSpring.update((val) => (val === 0 ? 1 : 0));
+  };
+  $: console.log($transformSpring);
 
   onMount(() => {
     app = CanvasApplication(container);
@@ -29,19 +36,14 @@
 </script>
 
 <div
-  class=" h-[400px] w-[400px]"
+  style="filter: blur({$transformSpring}px) sepia({$transformSpring})"
+  class=" h-[500px] w-[500px] outline outline-2"
   bind:this={container}
   role="presentation"
-  on:dragenter|preventDefault={() => {
-    console.log('dragenter');
-  }}
-  on:dragover|preventDefault={() => {
-    console.log('dragover');
-  }}
-  on:dragleave|preventDefault={() => {
-    console.log('dragleave');
-  }}
-  on:drop={(event) => {
+  on:dragenter|preventDefault={toggleTransform}
+  on:dragleave|preventDefault={toggleTransform}
+  on:drop|preventDefault={(event) => {
+    toggleTransform();
     getDroppedFileData(event).then((imageData) => {
       if (!imageData) return;
       loadSprite(imageData).then((sprite) => {
