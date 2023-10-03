@@ -14,29 +14,69 @@ export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
   });
 
   border(viewport);
-  addViewportEventListeners(viewport);
+  console.log(viewport.drag);
 
-  viewport.drag().wheel({
-    percent: 0,
-    interrupt: true,
-  });
+  viewport
+    .drag({
+      mouseButtons: 'left',
+    })
+    .wheel({
+      percent: 0,
+      interrupt: true,
+    });
 
   app.stage.addChild(viewport);
 
-  return viewport;
-};
+  let dragTarget: PIXI.Graphics | null = null;
 
-export function addViewportEventListeners(viewport: Viewport) {
+  app.stage.eventMode = 'static';
+  app.stage.addEventListener('pointerup', onDragEnd);
+  app.stage.addEventListener('pointerupoutside', onDragEnd);
+
+  const rect01 = new PIXI.Graphics();
+  rect01.beginFill(0x00ffff).drawRect(-100, -100, 200, 200);
+
+  rect01.eventMode = 'static';
+  rect01.cursor = 'pointer';
+  rect01.addEventListener('pointerdown', onDragStart);
+
+  viewport.addChild(rect01);
+
+  const rect02 = new PIXI.Graphics();
+  rect02.beginFill(0x00ffff).drawRect(275, 25, 200, 200);
+  viewport.addChild(rect02);
+
   viewport.addEventListener('moved', () => {
     restrainCorners(viewport);
   });
-}
 
-export function removeViewportEventListeners(viewport: Viewport) {
-  viewport.removeEventListener('moved', () => {
-    restrainCorners(viewport);
-  });
-}
+  return viewport;
+
+  function onDragStart(this: PIXI.Graphics) {
+    console.log('onDragStart');
+    this.alpha = 0.5;
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    dragTarget = this;
+    app.stage.on('pointermove', onDragMove);
+  }
+
+  function onDragMove(event: PIXI.FederatedPointerEvent) {
+    console.log('onDragMove');
+    if (dragTarget) {
+      dragTarget.parent.toLocal(event.global, undefined, dragTarget.position);
+      console.log(dragTarget.position);
+    }
+  }
+
+  function onDragEnd() {
+    console.log('onDragEnd');
+    if (dragTarget) {
+      app.stage.off('pointermove', onDragMove);
+      dragTarget.alpha = 1;
+      dragTarget = null;
+    }
+  }
+};
 
 function border(viewport: Viewport) {
   const line = viewport.addChild(new PIXI.Graphics());

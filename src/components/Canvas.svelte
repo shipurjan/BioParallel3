@@ -5,10 +5,7 @@
   import type { Viewport } from 'pixi-viewport';
   import { CanvasApplication } from '@utils/canvas/app';
   import { onMount } from 'svelte';
-  import {
-    CanvasViewport,
-    removeViewportEventListeners,
-  } from '@utils/viewport/viewport';
+  import { CanvasViewport } from '@utils/viewport/viewport';
   import { getDroppedFileData } from '@utils/canvas/getDroppedFileData';
   import { addSprite } from '@utils/viewport/addSprite';
   import { loadSprite } from '@utils/viewport/loadSprite';
@@ -30,7 +27,6 @@
 
     return () => {
       container.remove();
-      removeViewportEventListeners(viewport);
       viewport.destroy();
       app.destroy(true);
     };
