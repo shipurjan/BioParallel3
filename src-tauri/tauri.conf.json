@@ -72,11 +72,12 @@
                 "title": "BioParallel",
                 "label": "BioParallel",
                 "width": 1025,
-                "height": 525,
+                "height": 750,
                 "resizable": true,
                 "fullscreen": false,
                 "visible": false,
-                "fileDropEnabled": false
+                "fileDropEnabled": false,
+                "alwaysOnTop": false
             }
         ]
     }

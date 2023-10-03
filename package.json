@@ -26,6 +26,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@pixi/layers": "2.1.0",
     "@tauri-apps/api": "1.4.0",
     "pixi-viewport": "5.0.2",
     "pixi.js": "7.3.1"

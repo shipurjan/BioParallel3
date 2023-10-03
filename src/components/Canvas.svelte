@@ -12,15 +12,17 @@
   import { getDroppedFileData } from '@utils/canvas/getDroppedFileData';
   import { addSprite } from '@utils/viewport/addSprite';
   import { loadSprite } from '@utils/viewport/loadSprite';
+  import DebugInfo from './DebugInfo/DebugInfo.svelte';
 
   let container: HTMLDivElement;
   let app: Application<HTMLCanvasElement>;
   let viewport: Viewport;
-  const transformSpring = spring(0, { stiffness: 0.2, damping: 0.8 });
+  const blurSpring = spring(0, { stiffness: 0.2, damping: 0.8 });
+  const colorSpring = spring(0, { stiffness: 0.2, damping: 0.8 });
   const toggleTransform = () => {
-    return transformSpring.update((val) => (val === 0 ? 1 : 0));
+    blurSpring.update((val) => (val === 0 ? 1 : 0));
+    return colorSpring.update((val) => (val === 0 ? 0.5 : 0));
   };
-  $: console.log($transformSpring);
 
   onMount(() => {
     app = CanvasApplication(container);
@@ -35,21 +37,31 @@
   });
 </script>
 
-<div
-  style="filter: blur({$transformSpring}px) sepia({$transformSpring})"
-  class=" h-[500px] w-[500px] outline outline-2"
-  bind:this={container}
-  role="presentation"
-  on:dragenter|preventDefault={toggleTransform}
-  on:dragleave|preventDefault={toggleTransform}
-  on:drop|preventDefault={(event) => {
-    toggleTransform();
-    getDroppedFileData(event).then((imageData) => {
-      if (!imageData) return;
-      loadSprite(imageData).then((sprite) => {
-        if (!sprite) return;
-        addSprite(viewport, sprite);
+<div class="flex flex-col">
+  {#if import.meta.env.DEV && app && viewport}
+    <DebugInfo
+      {app}
+      {viewport}
+      class="box-content grid max-h-[225px] min-h-[225px] w-[500px] grid-cols-[fit-content(0px),auto] gap-[1px] bg-slate-900 text-center text-[0.6rem] text-white outline outline-2 outline-slate-900"
+    />
+  {/if}
+
+  <div
+    style="filter: blur({$blurSpring}px) sepia({$colorSpring}) grayscale({$colorSpring})"
+    class=" h-[500px] w-[500px] outline outline-2"
+    bind:this={container}
+    role="presentation"
+    on:dragenter|preventDefault={toggleTransform}
+    on:dragleave|preventDefault={toggleTransform}
+    on:drop|preventDefault={(event) => {
+      toggleTransform();
+      getDroppedFileData(event).then((imageData) => {
+        if (!imageData) return;
+        loadSprite(imageData).then((sprite) => {
+          if (!sprite) return;
+          addSprite(viewport, sprite);
+        });
       });
-    });
-  }}
-></div>
+    }}
+  ></div>
+</div>

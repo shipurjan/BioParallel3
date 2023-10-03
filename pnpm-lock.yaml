@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@pixi/layers':
+    specifier: 2.1.0
+    version: 2.1.0(@pixi/canvas-renderer@7.3.1)(@pixi/core@7.3.1)(@pixi/display@7.3.1)
   '@tauri-apps/api':
     specifier: 1.4.0
     version: 1.4.0
@@ -684,6 +687,14 @@ packages:
       '@types/css-font-loading-module': 0.0.7
     dev: false
 
+  /@pixi/canvas-renderer@7.3.1(@pixi/core@7.3.1):
+    resolution: {integrity: sha512-HnDb7zB83Ycr5tdBowdvXz35yCywx++1IJLbGfgM1h4ByctQr5b0970Ed8NUfUm1wLAzzTdCF0Vtb5a0AGVU1w==}
+    peerDependencies:
+      '@pixi/core': 7.3.1
+    dependencies:
+      '@pixi/core': 7.3.1
+    dev: false
+
   /@pixi/color@7.3.1:
     resolution: {integrity: sha512-qxDy9iEUbhR+n5zDBUUeWx9aReaELpjjP0BVneHNQxLELpx3sVxCHBXjnKe5ZTGtZsJOkD5ji7gDBfwFlUurBw==}
     dependencies:
@@ -810,6 +821,18 @@ packages:
       '@pixi/core': 7.3.1
       '@pixi/display': 7.3.1(@pixi/core@7.3.1)
       '@pixi/sprite': 7.3.1(@pixi/core@7.3.1)(@pixi/display@7.3.1)
+    dev: false
+
+  /@pixi/layers@2.1.0(@pixi/canvas-renderer@7.3.1)(@pixi/core@7.3.1)(@pixi/display@7.3.1):
+    resolution: {integrity: sha512-e3p3xaHSkVF1jLTfiTEsFGNzGRPffTO0UkKbwA9pfBzRHIBOFM2mCbVqcdhgHSMXRFYr2FoOp1+zK9jJifEUug==}
+    peerDependencies:
+      '@pixi/canvas-renderer': ^7.0.0
+      '@pixi/core': ^7.0.0
+      '@pixi/display': ^7.0.0
+    dependencies:
+      '@pixi/canvas-renderer': 7.3.1(@pixi/core@7.3.1)
+      '@pixi/core': 7.3.1
+      '@pixi/display': 7.3.1(@pixi/core@7.3.1)
     dev: false
 
   /@pixi/math@7.3.1:

@@ -3,11 +3,10 @@
 </script>
 
 <svelte:window
-  role="presentation"
-  on:dragenter|preventDefault
   on:dragover|preventDefault
-  on:dragleave|preventDefault
   on:drop|preventDefault
+  on:contextmenu|preventDefault|capture
+  on:selectstart|preventDefault|capture
 />
 
 <slot />
