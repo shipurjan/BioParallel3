@@ -9,11 +9,17 @@ export const getDroppedFileData = async (
     const items = event.dataTransfer.items;
     if (items) {
       for (const item of items) {
+        if(item.kind === 'string'){
+          item.getAsString((s) => {
+            console.log("file string: ",s)
+          });
+        }
         if (item.kind !== 'file')
-          throw new Error('Received object is not a file');
+          throw new Error(`Received object is not a file but ${item.kind}`);
         if (!item.type.startsWith('image/'))
           throw new Error('Received file is not an image');
 
+        console.log(item)
         const file = item.getAsFile();
         if (!file) throw new Error('This object is not a file');
 

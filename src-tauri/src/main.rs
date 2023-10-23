@@ -2,11 +2,16 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::Manager;
-
-
+use tauri::{CustomMenuItem, Menu, MenuItem, Submenu};
 
 fn main() {
+    let load = CustomMenuItem::new("load_file".to_string(), "Load file...");
+    let submenu = Submenu::new("File", Menu::new().add_item(load));
+    let menu = Menu::new()
+        .add_native_item(MenuItem::Copy)
+        .add_submenu(submenu);
     tauri::Builder::default()
+        .menu(menu)
         .invoke_handler(tauri::generate_handler![show_window, read_file])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

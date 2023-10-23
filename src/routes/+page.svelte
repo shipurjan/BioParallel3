@@ -19,6 +19,6 @@
 <div
   class="align-center flex h-full w-full flex-row items-center justify-center gap-2 bg-slate-500 p-2 align-middle"
 >
-  <Canvas />
-  <Canvas />
+  <Canvas spriteUrl={'/home/cyprian/Documents/repos/BioParallel/src/images/L1ROL.png'} />
+  <Canvas spriteUrl={'/home/cyprian/Documents/repos/BioParallel/src/images/L1AC.png'} />
 </div>
