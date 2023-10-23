@@ -1,6 +1,5 @@
 import { Viewport } from 'pixi-viewport';
 import * as PIXI from 'pixi.js';
-import { loadSprite } from './loadSprite';
 
 export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
   const viewport = new Viewport({
@@ -15,11 +14,10 @@ export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
   });
 
   border(viewport);
-  console.log(viewport.drag);
 
   viewport
     .drag({
-      mouseButtons: 'left',
+      mouseButtons: 'middle-left',
     })
     .wheel({
       percent: 0,
@@ -33,7 +31,6 @@ export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
   });
 
   return viewport;
-
 };
 
 function border(viewport: Viewport) {

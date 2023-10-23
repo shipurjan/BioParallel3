@@ -7,4 +7,8 @@ export const readFile = async (path: string) => {
   } catch (error) {
     console.error(error);
   }
+
+  throw new Error(
+    `Something went wrong with reading the file at path: ${path}`
+  );
 };

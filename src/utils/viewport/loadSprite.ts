@@ -14,7 +14,14 @@ export async function loadSprite(
     const imageBytes = await (async () => {
       if (typeof data === 'string') return readFile(data);
       if (data instanceof Uint8Array) return data;
+
+      throw new Error(
+        `Sprite could not be loaded because the received data is of unknown type: ${JSON.stringify(
+          data
+        )}`
+      );
     })();
+
     if (!imageBytes)
       throw new Error('Failed to receive a byte representation of a file');
 
@@ -24,4 +31,8 @@ export async function loadSprite(
   } catch (error) {
     console.error(error);
   }
+
+  throw new Error(
+    `Something went wrong with loading the sprite: ${JSON.stringify(data)}`
+  );
 }

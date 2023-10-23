@@ -45,13 +45,13 @@
     <DebugInfo
       {app}
       {viewport}
-      class="box-content grid max-h-[225px] min-h-[225px] w-[600px] grid-cols-[fit-content(0px),auto] gap-[1px] bg-slate-900 text-center text-[0.6rem] text-white outline outline-2 outline-slate-900"
+      class="box-content grid max-h-[225px] min-h-[225px] w-[500px] grid-cols-[fit-content(0px),auto] gap-[1px] bg-slate-900 text-center text-[0.6rem] text-white outline outline-2 outline-slate-900"
     />
   {/if}
 
   <div
     style="filter: blur({$blurSpring}px) sepia({$colorSpring}) grayscale({$colorSpring})"
-    class=" h-[600px] w-[600px] outline outline-2"
+    class=" h-[500px] w-[500px] outline outline-2"
     bind:this={container}
     role="presentation"
     on:dragenter|preventDefault={toggleTransform}

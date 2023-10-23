@@ -17,7 +17,7 @@
   });
 </script>
 
-<div class={$$restProps.class || ''}>
+<div class={$$restProps['class'] || ''}>
   <DebugRow title="app.screen">
     <DebugLabel title={'top'} value={`${round(app.screen.top, 2)}`} />
     <DebugLabel title={'right'} value={`${round(app.screen.right, 2)}`} />
