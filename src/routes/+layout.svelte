@@ -1,6 +1,6 @@
 <script>
   import '@/node_modules/modern-normalize/modern-normalize.css';
-  import '../app.css';
+  import '../app.postcss';
 </script>
 
 <svelte:window
