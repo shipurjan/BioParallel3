@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Canvas from '@components/Canvas.svelte';
+  import Canvas from '@components/canvas/Canvas.svelte';
   import { invoke } from '@tauri-apps/api/tauri';
   import { onMount } from 'svelte';
   import { appWindow, PhysicalSize } from '@tauri-apps/api/window';

@@ -3,9 +3,9 @@
 
   import type { Application } from 'pixi.js';
   import type { Viewport } from 'pixi-viewport';
-  import { CanvasApplication } from '@utils/canvas/app';
+  import { CanvasApplication } from '@/src/controllers/canvas/canvas';
   import { onMount } from 'svelte';
-  import { CanvasViewport } from '@utils/viewport/viewport';
+  import { CanvasViewport } from '@/src/controllers/viewport/viewport';
   import { getDroppedFileData } from '@utils/canvas/getDroppedFileData';
   import { addSprite } from '@utils/viewport/addSprite';
   import { loadSprite } from '@utils/viewport/loadSprite';
