@@ -1,20 +1,19 @@
 import { readFile } from '@utils/filesystem/readFile';
 import * as PIXI from 'pixi.js';
 
-export async function loadSprite(
-  path: string
-): Promise<PIXI.Sprite | undefined>;
-export async function loadSprite(
-  imageBytes: Uint8Array
-): Promise<PIXI.Sprite | undefined>;
-export async function loadSprite(
-  data: unknown
-): Promise<PIXI.Sprite | undefined> {
+export async function loadSprite(data: string | Uint8Array) {
   try {
     const imageBytes = await (async () => {
       if (typeof data === 'string') return readFile(data);
       if (data instanceof Uint8Array) return data;
+
+      throw new Error(
+        `Sprite could not be loaded because the received data is of unknown type: ${JSON.stringify(
+          data
+        )}`
+      );
     })();
+
     if (!imageBytes)
       throw new Error('Failed to receive a byte representation of a file');
 
@@ -24,4 +23,8 @@ export async function loadSprite(
   } catch (error) {
     console.error(error);
   }
+
+  throw new Error(
+    `Something went wrong with loading the sprite: ${JSON.stringify(data)}`
+  );
 }

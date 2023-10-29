@@ -4,16 +4,36 @@
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true,
-    "strictNullChecks": true,
     "noStrictGenericChecks": false,
+    // TypeScript compiler options recommendation from
+    // https://www.lucaspaganini.com/academy/20-typescript-compiler-options-for-your-tsconfig-json
+    // Strict mode (9)
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+    // No unused code (4)
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    // No implicit code (2)
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    // Others (5)
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true
   }
   // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
   //

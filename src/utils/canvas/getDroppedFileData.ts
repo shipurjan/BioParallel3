@@ -10,7 +10,7 @@ export const getDroppedFileData = async (
     if (items) {
       for (const item of items) {
         if (item.kind !== 'file')
-          throw new Error('Received object is not a file');
+          throw new Error(`Received object is not a file but ${item.kind}`);
         if (!item.type.startsWith('image/'))
           throw new Error('Received file is not an image');
 
@@ -28,4 +28,8 @@ export const getDroppedFileData = async (
   } catch (error) {
     console.error(error);
   }
+
+  throw new Error(
+    `Something went wrong with drag'n'drop event: ${JSON.stringify(event)}`
+  );
 };

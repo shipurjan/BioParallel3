@@ -1,0 +1,80 @@
+@font-face {
+  font-display: swap;
+  font-family: 'TeX Gyre Termes';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/TeX/texgyretermes-400.otf') format('otf');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'TeX Gyre Termes';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/TeX/texgyretermes-400italic.otf') format('otf');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'TeX Gyre Termes';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/TeX/texgyretermes-700.otf') format('otf');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'TeX Gyre Termes';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/TeX/texgyretermes-700italic.otf') format('otf');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'FreeSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/FreeSans/freesans-400.otf') format('otf');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'FreeSans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/FreeSans/freesans-400italic.otf') format('otf');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'FreeSans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/FreeSans/freesans-700.otf') format('otf');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'FreeSans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/FreeSans/freesans-700italic.otf') format('otf');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  user-select: none;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+:root [data-theme='bioparallel'] {
+  --theme-font-family-base: 'TeX Gyre Termes', serif;
+  --theme-font-family-heading: 'FreeSans', sans-serif;
+}
+
+html,
+body {
+  @apply h-full overflow-hidden;
+}

@@ -14,29 +14,24 @@ export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
   });
 
   border(viewport);
-  addViewportEventListeners(viewport);
 
-  viewport.drag().wheel({
-    percent: 0,
-    interrupt: true,
-  });
+  viewport
+    .drag({
+      mouseButtons: 'middle-left',
+    })
+    .wheel({
+      percent: 0,
+      interrupt: true,
+    });
 
   app.stage.addChild(viewport);
 
-  return viewport;
-};
-
-export function addViewportEventListeners(viewport: Viewport) {
   viewport.addEventListener('moved', () => {
     restrainCorners(viewport);
   });
-}
 
-export function removeViewportEventListeners(viewport: Viewport) {
-  viewport.removeEventListener('moved', () => {
-    restrainCorners(viewport);
-  });
-}
+  return viewport;
+};
 
 function border(viewport: Viewport) {
   const line = viewport.addChild(new PIXI.Graphics());

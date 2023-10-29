@@ -24,8 +24,11 @@
                     "deny": [],
                     "requireLiteralLeadingDot": false
                 },
-                "readFile": true,
-                "exists": true
+                "readFile": true
+            },
+            "dialog": {
+                "open": true,
+                "save": true
             }
         },
         "bundle": {
@@ -71,12 +74,13 @@
             {
                 "title": "BioParallel",
                 "label": "BioParallel",
-                "width": 1280,
-                "height": 720,
+                "width": 1600,
+                "height": 840,
                 "resizable": true,
                 "fullscreen": false,
                 "visible": false,
-                "fileDropEnabled": false
+                "fileDropEnabled": false,
+                "alwaysOnTop": false
             }
         ]
     }

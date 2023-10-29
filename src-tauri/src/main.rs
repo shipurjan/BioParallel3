@@ -2,12 +2,16 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::Manager;
-
-
+use tauri::{CustomMenuItem, Menu, Submenu};
 
 fn main() {
+    let load = CustomMenuItem::new("load_file".to_string(), "Load file...");
+    let submenu = Submenu::new("File", Menu::new().add_item(load));
+    let menu = Menu::new()
+        .add_submenu(submenu);
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![show_window, read_file, handle_dropped_files])
+        .menu(menu)
+        .invoke_handler(tauri::generate_handler![show_window, read_file])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -27,13 +31,4 @@ async fn read_file(path: std::path::PathBuf) -> Result<Vec<u8>, String> {
       Ok(data) => Ok(data),
       Err(err) => Err(format!("Failed to read file: {}", err)),
   }
-}
-
-#[tauri::command]
-fn handle_dropped_files(files: Vec<std::path::PathBuf>) {
-    for file_path in files {
-        // Now, `file_path` contains the absolute path of the dropped file
-        println!("Dropped file path: {:?}", file_path);
-        // You can perform further actions with the absolute file path
-    }
 }
