@@ -85,7 +85,7 @@
       bind:files
       {name}
       {...prunedRestProps()}
-      on:click={onFileInputClick}
+      on:click|preventDefault={onFileInputClick}
       on:change
     />
   </div>

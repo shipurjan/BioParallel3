@@ -7,8 +7,6 @@
   import { onMount } from 'svelte';
   import { CanvasViewport } from '@/src/controllers/viewport/viewport';
   import { getDroppedFileData } from '@utils/canvas/getDroppedFileData';
-  import { addSprite } from '@utils/viewport/addSprite';
-  import { loadSprite } from '@utils/viewport/loadSprite';
   import DebugInfo from './DebugInfo/DebugInfo.svelte';
   import { addForensicTraceImageSpriteToViewport } from '@utils/canvas/addForensicTraceImageSpriteToViewport';
 
@@ -58,11 +56,7 @@
     on:drop|preventDefault={(event) => {
       toggleTransform();
       getDroppedFileData(event).then((imageData) => {
-        if (!imageData) return;
-        loadSprite(imageData).then((sprite) => {
-          if (!sprite) return;
-          addSprite(viewport, sprite);
-        });
+        addForensicTraceImageSpriteToViewport(viewport, imageData);
       });
     }}
   ></div>

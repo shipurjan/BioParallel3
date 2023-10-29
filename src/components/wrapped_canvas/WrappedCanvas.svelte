@@ -12,10 +12,12 @@
   }
 </script>
 
-<Canvas {spriteUrl} />
-<FileButton
-  bind:files
-  name="Image"
-  extensions={['png', 'jpg', 'jpeg']}
-  on:change={onChangeHandler}
-/>
+<div class="flex flex-col items-center">
+  <Canvas {spriteUrl} />
+  <FileButton
+    bind:files
+    name="Image"
+    extensions={['png', 'jpg', 'jpeg']}
+    on:change={onChangeHandler}
+  />
+</div>
