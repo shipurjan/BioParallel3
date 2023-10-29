@@ -12,9 +12,10 @@
   }
 </script>
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center gap-2">
   <Canvas {spriteUrl} />
   <FileButton
+    button="btn variant-filled-primary"
     bind:files
     name="Image"
     extensions={['png', 'jpg', 'jpeg']}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { AppShell, LightSwitch } from '@skeletonlabs/skeleton';
   import { invoke } from '@tauri-apps/api/tauri';
   import { onMount } from 'svelte';
   import { appWindow, PhysicalSize } from '@tauri-apps/api/window';
@@ -18,9 +19,22 @@
   });
 </script>
 
-<div
-  class="align-center flex h-full w-full flex-row items-center justify-center gap-2 p-2 align-middle"
->
-  <WrappedCanvas />
-  <WrappedCanvas />
-</div>
+<AppShell scrollbarGutter="auto">
+  <!-- (header) -->
+  <svelte:fragment slot="sidebarLeft">Left Sidebar</svelte:fragment>
+  <svelte:fragment slot="sidebarRight">Right Sidebar</svelte:fragment>
+  <svelte:fragment slot="header">
+    <LightSwitch />
+  </svelte:fragment>
+  <!-- Router Slot -->
+  <div
+    class="align-center flex h-full w-full flex-row items-center justify-evenly gap-2 p-2 align-middle"
+  >
+    <WrappedCanvas />
+    <WrappedCanvas />
+  </div>
+
+  <!-- ---- / ---- -->
+  <svelte:fragment slot="footer">Page footer</svelte:fragment>
+  <!-- (footer) -->
+</AppShell>

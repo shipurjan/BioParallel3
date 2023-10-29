@@ -14,6 +14,8 @@ const config = {
     alias: {
       '@assets/*': 'src/assets',
       '@components/*': 'src/components',
+      '@controllers/*': 'src/controllers',
+      '@themes/*': 'src/themes',
       '@utils/*': 'src/utils',
       '@/*': '.',
     },

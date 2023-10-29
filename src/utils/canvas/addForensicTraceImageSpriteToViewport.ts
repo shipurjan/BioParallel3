@@ -8,6 +8,7 @@ export const addForensicTraceImageSpriteToViewport = (
 ) => {
   loadSprite(spriteUrl).then((sprite) => {
     const forensicTraceImageSpriteName = 'Forensic trace image';
+    if (!viewport) return;
 
     const previousForensicTraceImageSpriteIndex = viewport.children.findIndex(
       (child) => child.name === forensicTraceImageSpriteName
