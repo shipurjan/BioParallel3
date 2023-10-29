@@ -3,13 +3,12 @@
 
   import type { Application } from 'pixi.js';
   import type { Viewport } from 'pixi-viewport';
-  import { CanvasApplication } from '@/src/controllers/canvas/canvas';
+  import { CanvasApplication } from '@controllers/canvas/canvas';
   import { onMount } from 'svelte';
-  import { CanvasViewport } from '@/src/controllers/viewport/viewport';
+  import { CanvasViewport } from '@controllers/viewport/viewport';
   import { getDroppedFileData } from '@utils/canvas/getDroppedFileData';
-  import { addSprite } from '@utils/viewport/addSprite';
-  import { loadSprite } from '@utils/viewport/loadSprite';
   import DebugInfo from './DebugInfo/DebugInfo.svelte';
+  import { addForensicTraceImageSpriteToViewport } from '@utils/canvas/addForensicTraceImageSpriteToViewport';
 
   export let spriteUrl: null | string = null;
   let container: HTMLDivElement;
@@ -22,15 +21,13 @@
     return colorSpring.update((val) => (val === 0 ? 0.5 : 0));
   };
 
+  $: if (spriteUrl !== null) {
+    addForensicTraceImageSpriteToViewport(viewport, spriteUrl);
+  }
+
   onMount(() => {
     app = CanvasApplication(container);
     viewport = CanvasViewport(app);
-    if (spriteUrl !== null) {
-      loadSprite(spriteUrl).then((sprite) => {
-        if (!sprite) return;
-        viewport.addChild(sprite);
-      });
-    }
 
     return () => {
       container.remove();
@@ -40,18 +37,18 @@
   });
 </script>
 
-<div class="flex flex-col">
+<div class="flex w-[500px] flex-col outline outline-2">
   {#if import.meta.env.DEV && app && viewport}
     <DebugInfo
       {app}
       {viewport}
-      class="box-content grid max-h-[225px] min-h-[225px] w-[500px] grid-cols-[fit-content(0px),auto] gap-[1px] bg-slate-900 text-center text-[0.6rem] text-white outline outline-2 outline-slate-900"
+      class="box-border grid w-full grid-cols-[fit-content(0px),auto] gap-[1px] bg-surface-900 p-2 text-center text-[0.6rem] text-tertiary-50"
     />
   {/if}
 
   <div
     style="filter: blur({$blurSpring}px) sepia({$colorSpring}) grayscale({$colorSpring})"
-    class=" h-[500px] w-[500px] outline outline-2"
+    class=" h-[500px] w-full"
     bind:this={container}
     role="presentation"
     on:dragenter|preventDefault={toggleTransform}
@@ -59,11 +56,7 @@
     on:drop|preventDefault={(event) => {
       toggleTransform();
       getDroppedFileData(event).then((imageData) => {
-        if (!imageData) return;
-        loadSprite(imageData).then((sprite) => {
-          if (!sprite) return;
-          addSprite(viewport, sprite);
-        });
+        addForensicTraceImageSpriteToViewport(viewport, imageData);
       });
     }}
   ></div>

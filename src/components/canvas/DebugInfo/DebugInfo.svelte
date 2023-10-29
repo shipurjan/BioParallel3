@@ -10,6 +10,7 @@
   export let viewport: Viewport;
 
   onMount(() => {
+    app.ticker.maxFPS = 0;
     app.ticker.add(() => {
       app = app;
       viewport = viewport;
