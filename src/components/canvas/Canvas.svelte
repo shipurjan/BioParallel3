@@ -10,6 +10,7 @@
   import { addSprite } from '@utils/viewport/addSprite';
   import { loadSprite } from '@utils/viewport/loadSprite';
   import DebugInfo from './DebugInfo/DebugInfo.svelte';
+  import { addForensicTraceImageSpriteToViewport } from '@utils/canvas/addForensicTraceImageSpriteToViewport';
 
   export let spriteUrl: null | string = null;
   let container: HTMLDivElement;
@@ -22,15 +23,13 @@
     return colorSpring.update((val) => (val === 0 ? 0.5 : 0));
   };
 
+  $: if (spriteUrl !== null) {
+    addForensicTraceImageSpriteToViewport(viewport, spriteUrl);
+  }
+
   onMount(() => {
     app = CanvasApplication(container);
     viewport = CanvasViewport(app);
-    if (spriteUrl !== null) {
-      loadSprite(spriteUrl).then((sprite) => {
-        if (!sprite) return;
-        viewport.addChild(sprite);
-      });
-    }
 
     return () => {
       container.remove();
