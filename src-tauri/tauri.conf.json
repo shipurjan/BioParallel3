@@ -80,7 +80,8 @@
                 "fullscreen": false,
                 "visible": false,
                 "fileDropEnabled": false,
-                "alwaysOnTop": false
+                "alwaysOnTop": false,
+                "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection,OverscrollHistoryNavigation,msExperimentalScrolling,ElasticOverscroll --enable-unsafe-webgpu"
             }
         ]
     }
