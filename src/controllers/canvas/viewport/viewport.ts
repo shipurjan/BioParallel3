@@ -1,7 +1,11 @@
+import { Group, Layer } from '@pixi/layers';
 import { Viewport } from 'pixi-viewport';
 import * as PIXI from 'pixi.js';
 
-export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
+export const CanvasViewport = (
+  app: PIXI.Application<HTMLCanvasElement>,
+  markersViewport: Viewport
+) => {
   const viewport = new Viewport({
     screenWidth: app.view.clientWidth,
     screenHeight: app.view.clientHeight,
@@ -12,6 +16,7 @@ export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
     ticker: app.ticker,
     events: app.renderer.events,
   });
+  let previousScaled = 1.0;
 
   border(viewport);
 
@@ -22,13 +27,33 @@ export const CanvasViewport = (app: PIXI.Application<HTMLCanvasElement>) => {
     .wheel({
       percent: 0,
       interrupt: true,
+    })
+    .clampZoom({
+      minScale: 0.5,
     });
 
-  app.stage.addChild(viewport);
+  const viewportLayer = new Layer(new Group(1, true));
+  viewportLayer.addChild(viewport);
+  app.stage.addChild(viewportLayer);
 
   viewport.addEventListener('moved', () => {
     restrainCorners(viewport);
   });
+
+  viewport.addEventListener('moved', () => {
+    markersViewport.position = viewport.position;
+  });
+
+  viewport.addEventListener('zoomed', () => {
+    markersViewport.children.forEach((mark) => {
+      mark.position.x *= viewport.scaled / previousScaled;
+      mark.position.y *= viewport.scaled / previousScaled;
+    });
+    previousScaled = viewport.scaled;
+  });
+
+  viewport.fit();
+  viewport.moveCenter(viewport.worldWidth / 2, viewport.worldHeight / 2);
 
   return viewport;
 };
