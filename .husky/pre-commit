@@ -3,4 +3,5 @@
 
 pnpm exec lint-staged
 pnpm svelte:check
+pnpm format
 pnpm run prebuild
