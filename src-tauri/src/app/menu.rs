@@ -7,7 +7,9 @@ pub fn init() -> Menu {
     let file_menu = Submenu::new(
         "File",
         Menu::with_items([
+            // TODO: Add functionality to Save
             CustomMenuItem::new("save", "Save").into(),
+            // TODO: Add functionality to Open
             CustomMenuItem::new("open", "Open").into(),
             MenuItem::Separator.into(),
             MenuItem::Quit.into(),
@@ -16,6 +18,7 @@ pub fn init() -> Menu {
 
     let edit_menu = Submenu::new(
         "Edit",
+        // TODO: Add functionality to Edit menu / replace the native items below
         Menu::new()
             .add_native_item(MenuItem::Undo)
             .add_native_item(MenuItem::Redo)
