@@ -8,12 +8,14 @@
 
   export let app: Application<HTMLCanvasElement>;
   export let viewport: Viewport;
+  export let markersViewport: Viewport;
 
   onMount(() => {
     app.ticker.maxFPS = 0;
     app.ticker.add(() => {
       app = app;
       viewport = viewport;
+      markersViewport = markersViewport;
     });
   });
 </script>
@@ -100,5 +102,59 @@
     />
     <DebugLabel title={'scaled'} value={`${round(viewport.scaled, 5)}`} />
     <DebugLabel title={'zIndex'} value={`${viewport.zIndex}`} />
+  </DebugRow>
+
+  <DebugRow title="markersViewport">
+    <DebugLabel title={'top'} value={`${round(markersViewport.top, 2)}`} />
+    <DebugLabel title={'right'} value={`${round(markersViewport.right, 2)}`} />
+    <DebugLabel
+      title={'bottom'}
+      value={`${round(markersViewport.bottom, 2)}`}
+    />
+    <DebugLabel title={'left'} value={`${round(markersViewport.left, 2)}`} />
+    <DebugLabel
+      title={'size'}
+      value={`${round(markersViewport.width, 2)}x${round(
+        markersViewport.height,
+        2
+      )}`}
+    />
+    <DebugLabel
+      title={'center'}
+      value={`(${round(markersViewport.center.x, 2)}, ${round(
+        markersViewport.center.y,
+        2
+      )})`}
+    />
+    <DebugLabel
+      title={'position'}
+      value={`(${round(markersViewport.x, 2)}, ${round(markersViewport.y, 2)})`}
+    />
+    <DebugLabel
+      title={'corner'}
+      value={`(${round(markersViewport.corner.x, 2)}, ${round(
+        markersViewport.corner.y,
+        2
+      )})`}
+    />
+    <DebugLabel
+      title={'worldSize'}
+      value={`${round(markersViewport.worldWidth, 2)}x${round(
+        markersViewport.worldHeight,
+        2
+      )}`}
+    />
+    <DebugLabel
+      title={'worldScreenSize'}
+      value={`${round(markersViewport.worldScreenWidth, 2)}x${round(
+        markersViewport.worldScreenHeight,
+        2
+      )}`}
+    />
+    <DebugLabel
+      title={'scaled'}
+      value={`${round(markersViewport.scaled, 5)}`}
+    />
+    <DebugLabel title={'zIndex'} value={`${markersViewport.zIndex}`} />
   </DebugRow>
 </div>

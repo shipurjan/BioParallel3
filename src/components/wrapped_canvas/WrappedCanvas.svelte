@@ -7,7 +7,6 @@
 
   function onChangeHandler() {
     const pathToSprite = files[0]?.name;
-    console.log(pathToSprite);
     if (pathToSprite) spriteUrl = pathToSprite;
   }
 </script>
